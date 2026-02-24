@@ -1,0 +1,65 @@
+name: Release VSIX
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    name: Build and Release VSIX
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Build internal packages
+        run: |
+          for pkg in config-types config-yaml terminal-security llm-info fetch openai-adapters; do
+            echo "Building $pkg..."
+            cd packages/$pkg
+            npm install
+            npx tsc --noEmitOnError false || true
+            cd ../..
+          done
+
+      - name: Build GUI
+        run: |
+          cd gui
+          npm install
+          npm run build
+
+      - name: Install VS Code extension dependencies
+        run: |
+          cd extensions/vscode
+          npm install
+
+      - name: Package VSIX
+        run: |
+          cd extensions/vscode
+          npm run package
+
+      - name: Get version
+        id: version
+        run: echo "version=$(node -p "require('./extensions/vscode/package.json').version")" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.version.outputs.version }}
+          name: Airion Continue v${{ steps.version.outputs.version }}
+          files: extensions/vscode/build/continue-${{ steps.version.outputs.version }}.vsix
+          body: |
+            Airion ラダー特化LLM対応 Continue.dev
+          make_latest: true
+          token: ${{ secrets.GITHUB_TOKEN }}

@@ -6,9 +6,7 @@ import { useEditModel } from "../../../components/mainInput/Lump/useEditBlock";
 import { Card, Divider, Toggle } from "../../../components/ui";
 import { useAuth } from "../../../context/Auth";
 import { IdeMessengerContext } from "../../../context/IdeMessenger";
-import { AddModelForm } from "../../../forms/AddModelForm";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { setDialogMessage, setShowDialog } from "../../../redux/slices/uiSlice";
 import { updateSelectedModelByRole } from "../../../redux/thunks/updateSelectedModelByRole";
 import { getMetaKeyLabel, isJetBrains } from "../../../util";
 import { ConfigHeader } from "../components/ConfigHeader";
@@ -40,35 +38,9 @@ export function ModelsSection() {
 
   const handleConfigureModel = useEditModel();
 
-  function handleAddModel() {
-    const isLocal = selectedProfile?.profileType === "local";
-
-    if (isLocal) {
-      dispatch(setShowDialog(true));
-      dispatch(
-        setDialogMessage(
-          <AddModelForm
-            onDone={() => {
-              dispatch(setShowDialog(false));
-            }}
-          />,
-        ),
-      );
-    } else {
-      void ideMessenger.request("controlPlane/openUrl", {
-        path: "?type=models",
-        orgSlug: undefined,
-      });
-    }
-  }
-
   return (
     <div className="space-y-4">
-      <ConfigHeader
-        title="Models"
-        onAddClick={handleAddModel}
-        addButtonTooltip="Add model"
-      />
+      <ConfigHeader title="Models" />
 
       <Card>
         <ModelRoleRow

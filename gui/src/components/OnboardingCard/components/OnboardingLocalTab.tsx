@@ -1,10 +1,8 @@
-import {
-  LOCAL_ONBOARDING_CHAT_MODEL,
-  LOCAL_ONBOARDING_CHAT_TITLE,
-  LOCAL_ONBOARDING_EMBEDDINGS_MODEL,
-  LOCAL_ONBOARDING_FIM_MODEL,
-  LOCAL_ONBOARDING_PROVIDER_TITLE,
-} from "core/config/onboarding";
+const LOCAL_ONBOARDING_PROVIDER_TITLE = "Ollama";
+const LOCAL_ONBOARDING_FIM_MODEL = "qwen2.5-coder:1.5b-base";
+const LOCAL_ONBOARDING_CHAT_TITLE = "Llama 3.1 8B";
+const LOCAL_ONBOARDING_CHAT_MODEL = "llama3.1:8b";
+const LOCAL_ONBOARDING_EMBEDDINGS_MODEL = "nomic-embed-text:latest";
 import { OnboardingModes } from "core/protocol/core";
 import { useContext, useEffect, useState } from "react";
 import { Button } from "../..";

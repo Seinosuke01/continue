@@ -26,10 +26,10 @@ export function OnboardingCard({ isDialog }: OnboardingCardProps) {
     setLocalStorage("onboardingStatus", "Started");
   }
 
-  // Default to MODELS_ADD_ON tab if no active tab is set
+  // デフォルトはAirion LLMのAPIキー入力タブ
   useEffect(() => {
     if (!activeTab) {
-      setActiveTab(OnboardingModes.MODELS_ADD_ON);
+      setActiveTab(OnboardingModes.API_KEY);
     }
   }, [activeTab, setActiveTab]);
 
@@ -46,8 +46,7 @@ export function OnboardingCard({ isDialog }: OnboardingCardProps) {
     }
   }
 
-  // Always show tabs view, defaulting to Models Add-On
-  const currentTab = activeTab || OnboardingModes.MODELS_ADD_ON;
+  const currentTab = activeTab || OnboardingModes.API_KEY;
 
   return (
     <ReusableCard
