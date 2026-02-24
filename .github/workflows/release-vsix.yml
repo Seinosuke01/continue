@@ -23,6 +23,11 @@ jobs:
         with:
           node-version: 22
 
+      - name: Install core dependencies
+        run: |
+          cd core
+          npm install
+
       - name: Build internal packages
         run: |
           for pkg in config-types config-yaml terminal-security llm-info fetch openai-adapters; do
