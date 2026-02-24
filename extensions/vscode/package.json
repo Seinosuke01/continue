@@ -603,7 +603,7 @@
       ]
     },
     "viewsContainers": {
-      "activitybar": [
+      "secondarySidebar": [
         {
           "id": "continue",
           "title": "Continue",
