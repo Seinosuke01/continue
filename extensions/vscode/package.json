@@ -22,6 +22,9 @@
   "pricing": "Free",
   "description": "Airion ラダー特化LLM搭載AIコードエージェント",
   "publisher": "Airion",
+  "enabledApiProposals": [
+    "contribSecondarySidebar"
+  ],
   "engines": {
     "vscode": "^1.70.0",
     "node": ">=20.19.0"
