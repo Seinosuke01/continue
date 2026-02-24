@@ -18,10 +18,10 @@
   "homepage": "https://continue.dev",
   "qna": "https://github.com/continuedev/continue/issues/new/choose",
   "license": "Apache-2.0",
-  "displayName": "Continue - open-source AI code agent",
+  "displayName": "Airion Continue",
   "pricing": "Free",
-  "description": "The leading open-source AI code agent",
-  "publisher": "Continue",
+  "description": "Airion ラダー特化LLM搭載AIコードエージェント",
+  "publisher": "Airion",
   "engines": {
     "vscode": "^1.70.0",
     "node": ">=20.19.0"
@@ -606,7 +606,7 @@
       "secondarySidebar": [
         {
           "id": "continue",
-          "title": "Continue",
+          "title": "Airion Continue",
           "icon": "media/sidebar-icon.png"
         }
       ],
