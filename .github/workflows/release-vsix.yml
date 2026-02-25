@@ -24,7 +24,7 @@ jobs:
           node-version: 22
 
       - name: Setup Python setuptools (node-gyp用、Python 3.12+でdistutilsが削除されたため)
-        run: pip3 install setuptools
+        run: pip3 install setuptools --break-system-packages
 
       - name: Install core dependencies
         run: |
