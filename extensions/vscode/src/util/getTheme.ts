@@ -42,6 +42,8 @@ function parseThemeString(themeString: string | undefined): any {
     })
     .map(stripInLineComment)
     .join("\n");
+  // JSONC形式のトレーリングカンマを除去（JSON.parseは対応していないため）
+  themeString = themeString?.replace(/,(\s*[}\]])/g, "$1");
   return JSON.parse(themeString ?? "{}");
 }
 
